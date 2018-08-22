@@ -1,0 +1,8 @@
+<b>Naslov poruke: &nbsp;</b><?php echo $title; ?> <br><br>
+<b>Autor: &nbsp;</b><?php echo $author; ?> <br><br>
+<b>Datum:&nbsp;</b><?php echo substr($datecreated, 8, 2) . '.' . substr($datecreated, 5, 2) .'.'. substr($datecreated, 0, 4).'; '.substr($datecreated, 11, 8); ?><br><br>
+<b>Tekst poruke: &nbsp;</b><?php echo $message; ?> <br><br>
+<b>Svidja mi se:&nbsp;</b><?php echo $likes ?>&nbsp;<a href="<?php echo site_url('/messages/like_message/'.$id); ?>">Klik za svidja</a><br>
+<b>Ne svidja mi se:&nbsp;</b><?php echo $dislikes ?>&nbsp;<a href="<?php echo site_url('/messages/dislike_message/'.$id); ?>">Klik za ne svidja</a><br>
+<b>Broj komentara:&nbsp;</b><?php echo $comments_count ?><br>
+<hr>

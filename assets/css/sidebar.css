@@ -1,0 +1,50 @@
+/* ****************************************************************************** */
+/* ** SIDEBAR ******************************************************************* */
+/* ****************************************************************************** */
+@font-face
+{
+    font-family: myFont1;
+    src: url('../fonts/minya-nouvelle-rg.ttf');
+}
+
+#sidebar
+{
+    padding-right: 10px;
+    margin-left: 10px;
+    background-color: #ffffff;
+}
+
+#sidebar_box
+{    
+    
+}
+
+#sidebar_box_naslov
+{
+    padding-top: 32px;
+    margin-bottom: 10px;
+    font-family: myFont1;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #d8c8b6;
+    text-align: center;
+    border-bottom: 2px solid #d8c8b6;
+}
+
+#sidebar_box_content
+{
+    font-family: myFont1;
+    color: #b4b4b4;
+}
+
+#sidebar_box_content a
+{
+    text-decoration: none;
+    color: #b4b4b4;
+}
+
+#sidebar_box_content a:hover
+{
+    text-decoration: none;
+    color: #040404;
+}

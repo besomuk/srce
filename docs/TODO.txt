@@ -1,0 +1,52 @@
+- provera unosa polja kod unosa komentara
+
+- razmisliti o broju pregleda. Vecina nece kliktati na detalji, vec ce citati na messages.php
+  U tom slucaju, za "kvalitet" poruke je dovoljno imati i samo odnos lajkova dislajkova
+  
+- flood zastita za like/dislike
+
+- koja je boja dugmica sacuvaj i posalji?
+
+- na linuxu brojac pregleda poruka radi 2x, na windowsu radi 1x
+  - linux - lamp apache
+  - win   - xamp ?
+
+- dodaj opciju za arhiviranje poruke
+  - poruka dobija poseban status, pa je nije moguce videti nigde ( ni u odobrenim, ni u neodobrenim ), osim na posebnom linku
+  
+- doterati hover.css i dovesti ga na par kilobajta 
+  - izbaciti sve nepotrebne tranzicije
+  
+- dodati jos jedan datum u tabelu poruka - datum ODOBRAVANJA poruke.
+  - taj datum ce sluziti za hronoloski prikaz poruka.
+  - !!!!!!!!!!!!!! vec imam datum izmene u protokolu
+
+- resiti problem duplih view-a.
+  - proveriti http pozive u zaglavlju stranice
+
+- iskljuci prikaz komentara gde nema komentara
+
+- pregledati deo poruke gde su SVIDJA MI SE dugmad, ponekad ovo desno ode u novi red
+
+- proveriti sve boje
+
+- font nema veliko slovo CH 
+
+- dodati broj pregleda poruke
+
+- sta sa crvenim tekstom "NAPOMENA"? Da li se prikazuje na svakoj strani?
+
+- pogledati sta se desava za starijim od IE7
+
+- Linux server ima problem sa vremenom u mikrosekundama za koje se proverava isticanje captche. Na windowsu imam vrednost od 1800, dok na Linuxu sa tom vrednoscu strajkuje
+  - Problem je ocigledno u vremenu.
+ 
+- provera da li je unesen broj u captcha kod. Ako se unesu slova, program puca
+
+- stripuj tagove iz textarea
+
+- dodaj proveru statusa poruke u pregled jedne poruke. Ovako, kako je sad do poruke koja nije odobrena za prikaz, moze da se dodje putem URL-a.
+
+- [OPCIJA] - graficka prezentacija odnosa lajkova i dislajkova
+- [OPCIJA] - dodavanje slike/videa
+- [OPCIJA] - opcija za DONJU liniju -> napraviti slicicu

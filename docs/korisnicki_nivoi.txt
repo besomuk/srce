@@ -1,0 +1,2 @@
+1 - administrator
+2 - moderator

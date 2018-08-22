@@ -1,0 +1,9 @@
+----------------------------------------------------------------------------
+99 - koristim za prikaz svih poruka, ne upisuje se u bazu
+   - koristi se iz modela kao naznak da prikazujem ili brojim SVE poruke
+----------------------------------------------------------------------------
+
+0  - nova poruka, niko je nije pogledao
+1  - poruku je pogledao moderator i odobrio za prikaz
+2  - arhivirana poruka
+

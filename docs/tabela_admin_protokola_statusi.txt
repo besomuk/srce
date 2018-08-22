@@ -1,0 +1,4 @@
+parametar type:
+
+1 - istorija za poruke
+2 - istorija za komentare

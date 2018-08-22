@@ -1,0 +1,17 @@
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <b>Tekst poruke:&nbsp;</b><?php echo $messages_item['message'] ?><br>
+        <b>Svidja mi se:&nbsp;</b><?php echo $messages_item['likes']; ?><br>
+        <b>Ne svidja mi se:&nbsp;</b><?php echo $messages_item['dislikes']; ?><br>
+        <b>Broj komentara:&nbsp;</b><?php echo $messages_item['comments']; ?><br>
+        <a href="<?php echo site_url('/view_message/' . $messages_item['id']); ?>">Citaj dalje...</a><br>                
+        <?php echo $messages_item['img']; ?>
+        <hr>
+		
+		
+            <div id="msg_head">
+                <div id="msg_head_l">
+                    <?php echo $messages_item['title'] ?>
+                </div>
+                <div id="msg_head_r">xxx                
+                </div>            
+            </div>		

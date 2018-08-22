@@ -1,0 +1,17 @@
+wrap
+|	header_soc
+|	header
+|   |	logo_holder
+|   |   uvod_txt
+|   nav
+|   header_banner
+|   main
+|   |	msg
+|   |	|	msg_head
+|   |	|	msg_head_add
+|   |	|	msg_txt
+|   |	|	msg_show
+|   |	|	msg_soc
+|   |	|	msg_likes
+|   |	|	msg_cmt_[##]
+footer

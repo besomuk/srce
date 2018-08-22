@@ -1,0 +1,26 @@
+admin_protokol
+	Tabela sa istorijom izmena koje su pravili administratori i moderatori.
+	
+autologin
+	Tabela za autologin administratora i moderatora.
+	
+captcha
+	Tabela sveze generisanih captcha kodova za pisanje poruke.
+
+captcha_di
+	Recnik srpskih reci za captcha.
+
+ci_sessions
+	Za autologin - umesto pisanja po samom serveru.
+	
+comments
+	Tabela komentara na objavljenu poruku.
+	
+messages
+	Tabela objavljenih i neobjavljenih poruka.
+	
+users
+	Administratori i moderatori.
+	
+votes
+	Tabela pracenja za lajkove i dislajkove neke poruke.

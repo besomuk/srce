@@ -1,0 +1,16 @@
+/* tamno bez : #d8c8b6
+   svetlo bez: #f6f2ef
+   ljubicasto: #8c4ca5
+*/
+@font-face
+{
+    font-family: myFont1;
+    src: url('../fonts/minya-nouvelle-rg.ttf');
+}
+
+#skrivac
+{
+    height: 100px;
+    background-color: aqua;
+    display: none;
+}

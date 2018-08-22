@@ -1,0 +1,53 @@
+/* ****************************************************************************** */
+/* ** FOOOTER ******************************************************************* */
+/* ****************************************************************************** */
+@font-face
+{
+    font-family: myFont1;
+    src: url('../fonts/minya-nouvelle-rg.ttf');
+}
+
+#footer
+{
+    clear: both;
+    width: 100%;
+    height: 100px;
+    background-color: #d8c8b6;
+    color: #ffffff;
+    font-family: myFont1;
+    margin:0 auto;
+    text-align: center;
+    padding-top: 30px;
+}
+
+#footer ul
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#footer li
+{
+    display: inline;
+    margin: 0;
+    padding: 0;
+    padding-right: 30px;
+    font-size: 20;
+    color: 000;    
+}
+
+#footer li a
+{
+    text-decoration: none;    
+    color: #ffffff;    
+}
+
+#footer li a:hover
+{
+    color: #8c4ca5;
+}
+
+#footer li a:visited
+{
+}

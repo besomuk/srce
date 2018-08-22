@@ -1,0 +1,139 @@
+/* tamno bez : #d8c8b6
+   svetlo bez: #f6f2ef
+   ljubicasto: #8c4ca5
+*/
+@font-face
+{
+    font-family: myFont1;
+    src: url('../fonts/minya-nouvelle-rg.ttf');
+}
+
+body
+{
+    margin: 0;
+    padding: 0;
+    color: 000;
+    background: url('../img/bg_pattern.png');
+    /* background-size: cover; */
+    /* background-color: red;  */
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+.input_error
+{
+    color: red;
+    margin-bottom: 0px;
+    font-size: 12px;
+}
+
+/* STATUSI PORUKE */
+.odobren
+{
+    padding: 1 3 1 3px;
+    background-color: green;
+    color: white;
+}
+
+.neodobren
+{
+    padding: 1 3 1 3px;
+    background-color: red;
+    color: white;
+}
+
+/* STIL PRIKAZA LISTE PORUKA */
+#poruke_container
+{
+    padding: 20px 30px 30px 20px;
+}
+
+.poruka
+{
+    background-color: white;
+    margin-bottom: 20px;
+    padding: 15px 10px 15px 10px;
+    border-top: 5px solid #d8c8b6;
+    border-left: 1px solid #d8c8b6;
+    border-right: 1px solid #d8c8b6;
+    border-bottom: 5px solid #d8c8b6;    
+}
+
+.poruka_menu
+{
+    background-color: white;
+    margin-top: 30px;   
+}
+
+.poruka_txt
+{
+    padding: 10px 10px 10px 10px;
+}
+
+a.poruka_menu_item
+{
+    background-color: white;
+    margin-top: 10px;
+    padding: 5px 5px 5px 5px;
+    border-top: 1px solid #661a00;
+    border-left: 1px solid #661a00;
+    border-right: 1px solid #661a00;
+    border-bottom: 1px solid #661a00;       
+    text-decoration: none;
+    color: gray;
+}
+
+a.poruka_menu_item:hover
+{
+    background-color: #661a00;
+    color: white;
+}
+
+#admin_dash_container
+{
+    padding: 10 10 10 10px;
+    background-color: white;
+}
+
+#admin_dash_title
+{
+    padding-bottom: 20px;
+    font-size: 20px;
+}
+
+#admin_dash_content
+{
+    background-color: white;
+    margin-bottom: 20px;
+    padding: 15px 10px 15px 10px;
+    border-top: 5px solid #d8c8b6;
+    border-left: 1px solid #d8c8b6;
+    border-right: 1px solid #d8c8b6;
+    border-bottom: 5px solid #d8c8b6;        
+}
+#zdravo
+{
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: white;
+    width: 200px;
+}
+
+#title2
+{
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+#footer
+{
+    clear: both;
+    width: 100%;
+    height: 50px;
+    background-color: #d8c8b6;
+    color: #ffffff;
+    margin:0 auto;
+    text-align: center;
+    padding-top: 30px;
+}
