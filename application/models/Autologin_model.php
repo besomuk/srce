@@ -45,7 +45,7 @@ class Autologin_model extends CI_Model {
      * Start a new serie for a user
      */
     public function insert($user, $series, $private) {
-        return $this->db->insert($this->table, array('user' => $user, 'series' => $series, 'key' => $private, 'created' => time()));
+        return $this->db->insert($this->table, array('user' => 1, 'series' => $series, 'key' => $private, 'created' => time()));
     }
     
     /**
