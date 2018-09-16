@@ -1,29 +1,22 @@
 <?php
-class Tools extends CI_Controller 
+class Tools extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('messages_model');
-        $this->load->model('comments_model');
-        $this->load->model('admin_model');
-        $this->load->model('autologin_model');
+        //$this->load->model('messages_model');
+        //$this->load->model('comments_model');
+        //$this->load->model('admin_model');
+        //$this->load->model('autologin_model');
         $this->load->helper('url');
         $this->load->helper('form');
-        $this->load->library('form_validation');     
+        $this->load->library('form_validation');
     }
-    
-    public function testiranja()
-    {
-        echo "Ja sam tester<br>";
-        $txt = "Dragi nasi, mi smo dobro sto i vama zelimo";
-        $this->smail ( "output@iqpixel.com", "bf110g@gmail.com", "opis", $txt);
-    }
-    
+
     public function smail ( $from, $to, $subject, $msg )
     {
         $this->load->library('email');
-        
+
         $this->email->from($from)
                     ->reply_to("office@iqpixel.com")
                     ->to($to)
@@ -32,5 +25,5 @@ class Tools extends CI_Controller
                     ->set_mailtype('html');
         //$this->email->print_debugger();
         $this->email->send();
-    }
+    }    
 }

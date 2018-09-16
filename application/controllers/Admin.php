@@ -1,46 +1,50 @@
 <?php
 class Admin extends CI_Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-        $this->load->model('messages_model');
-        $this->load->model('comments_model');
-        $this->load->model('admin_model');
-        $this->load->model('autologin_model');
-        $this->load->model('dbtools_model');
-        $this->load->helper('url');
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-        $this->load->dbutil();
+   public function __construct()
+   {
+      parent::__construct();
 
-    }
+      $this->load->model('messages_model');
+      $this->load->model('comments_model');
+      $this->load->model('admin_model');
+        //$this->load->model('autologin_model');
+      $this->load->model('dbtools_model');
+      $this->load->model('tools_model');
+
+      $this->load->helper('url');
+      $this->load->helper('form');
+
+      $this->load->library('form_validation');
+
+      $this->load->dbutil();
+
+   }
 
     /* glavna strana */
     public function index ()
     {
-        $data['title'] = "Admin Login";
+      $data['title'] = "Admin Login";
 
-        /* ako smo ulogovani, prebaci nas na prikaz radne povrsine za administratora */
+      if ( $this->tools_model->isLoggedIn() )
+      {
+         $this->dashboard ();
+         //echo "!";
+      }
+      //else
+      //{
+         /*
+         $this->form_validation->set_rules('username', 'Username', 'required');
+         $this->form_validation->set_rules('password', 'Password', 'required');
 
-        //if ( $this->auth->loggedin() == 1 )
-        //{
-            $this->dashboard ();
-
-         //   return 0;
-        //}
-        /*
-        $this->form_validation->set_rules('username', 'Username', 'required');
-        $this->form_validation->set_rules('password', 'Password', 'required');
-
-        if ($this->form_validation->run() === FALSE)
-        {
+         if ($this->form_validation->run() === FALSE)
+         {
             $this->load->view('admin/headerOUT', $data);
             $this->load->view('admin/index', $data);
             $this->load->view('admin/footerOUT', $data);
-        }
-        else
-        {
+         }
+         else
+         {
             $result = $this->admin_model->validate_login();
             if ( $result == 0 )
             {
@@ -49,18 +53,19 @@ class Admin extends CI_Controller
             else
             {
                 $username = $this->input->post('username') . "<br>";
-                $this->auth->login($username, $remember = TRUE);
+                //$this->auth->login($username, $remember = TRUE);
                 redirect ('/admin');
             }
-        }
-        */
-    }
+         }
+         */
+      //}
+   }
 
     public function dashboard ()
     {
         //$this->is_logged_in();
 
-        $data['username'] = $this->auth->userid();
+        $data['username'] = "Admin";
         $data['title'] = 'Admin Panel';
         // prikazi ostatak stranice
         //$data['username'] = "ASD";
@@ -86,7 +91,7 @@ class Admin extends CI_Controller
     /* ukoliko je parametar prazan, id-u dajem vrednost 99 koji oznacava da treba prikazati sve poruke */
     public function show_messages ( $z = 99 )
     {
-        //$this->is_logged_in();
+      if ( !$this->tools_model->isLoggedIn() ) return 0;
 
         $data['messages'] = $this->messages_model->get_messages($z); // uzmi poruke iz baze
         $data['count'] = count($data['messages']);                   // izbroj poruke
@@ -109,7 +114,7 @@ class Admin extends CI_Controller
             $data['title2'] = 'SVE PORUKE';
         }
 
-        $data['username'] = $this->auth->userid();
+        $data['username'] = "admin";
 
         // prikazi ostatak stranice
         $this->load->view('admin/header', $data);
@@ -121,8 +126,8 @@ class Admin extends CI_Controller
     /* prikazi sve komentare datog statusa, na sve poruke */
     public function show_comments ( $z = 99 )
     {
-        //$this->is_logged_in();
-        $data['username'] = $this->auth->userid();
+        if ( !$this->tools_model->isLoggedIn() ) return 0;
+        $data['username'] = "admin";
 
         // na osnovu parametra, napisi naslov stranice, da se zna sta gledamo
         if ( $z == 0 )
@@ -160,26 +165,18 @@ class Admin extends CI_Controller
     /* da admin nije ulogovan ). Zato ovo ostavljam   */
     /* kasnije.                                       */
     /* ********************************************** */
-    private function is_logged_in ()
-    {
-        if ( $this->auth->loggedin() != 1 )
-        {
-            redirect ('/admin');
-        }
-    }
 
     /* logout metoda */
     public function logout()
     {
-        $this->auth->logout();
-        redirect ('/admin');
+
     }
 
     /* odobri poruku za prikaz */
     public function approve_message ( $id )
     {
-        //$this->is_logged_in();
-        $result = $this->messages_model->set_message_status($id, 1, $this->auth->userid() );
+        if ( !$this->tools_model->isLoggedIn() ) return 0;
+        $result = $this->messages_model->set_message_status($id, 1, $data['username'] );
         redirect($_SERVER['HTTP_REFERER']); // vrati se na stranu sa koje si i dosao
     }
 
@@ -187,33 +184,33 @@ class Admin extends CI_Controller
     /* poruka ostaje upisana u bazi, menja se status u neaktivan */
     public function remove_message ( $id )
     {
-        //$this->is_logged_in();
-        $result = $this->messages_model->set_message_status($id, 0, $this->auth->userid());
+        if ( !$this->tools_model->isLoggedIn() ) return 0;
+        $result = $this->messages_model->set_message_status($id, 0, $data['username'] );
         redirect($_SERVER['HTTP_REFERER']); // vrati se na stranu sa koje si i dosao
     }
 
     /* ODOBRI KOMENTAR ZA PRIKAZ */
     public function approve_comment ( $id )
     {
-        //$this->is_logged_in();
-        $result = $this->comments_model->set_comment_status($id, 1, $this->auth->userid());
+        if ( !$this->tools_model->isLoggedIn() ) return 0;
+        $result = $this->comments_model->set_comment_status($id, 1, $data['username'] );
         redirect ('/admin/show_comments/0');
     }
 
     /* SKLONI KOMENTAR */
     public function remove_comment ( $id )
     {
-        //$this->is_logged_in();
-        $result = $this->comments_model->set_comment_status($id, 0, $this->auth->userid());
+        if ( !$this->tools_model->isLoggedIn() ) return 0;
+        $result = $this->comments_model->set_comment_status($id, 0, $data['username'] );
         redirect ('/admin/show_comments/1');
     }
 
     /* prikazi istoriju izmena status poruke */
     public function status_history ( $id )
     {
-        //$this->is_logged_in();
+        if ( !$this->tools_model->isLoggedIn() ) return 0;
         $data['items'] = $this->messages_model->get_status_history( $id, 1 );
-        $data['username'] = $this->auth->userid();
+        //$data['username'] = $this->auth->userid();
         $data['title'] = "Istorija poruke " . $id;
         $data['id_poruke'] = $id;
 
@@ -226,9 +223,9 @@ class Admin extends CI_Controller
     /* STRANICA ZA PODESAVANJA */
     public function settings ()
     {
-        //$this->is_logged_in();
+        if ( !$this->tools_model->isLoggedIn() ) return 0;
         $data['title'] = 'Podesavanja';
-        $data['username'] = $this->auth->userid();
+        $data['username'] = "admin";
 
         $this->load->view('admin/header', $data);
         $this->load->view('admin/menu', $data);
@@ -239,8 +236,8 @@ class Admin extends CI_Controller
     /* STRANICA ZA NEWS LETTER */
     public function letter ()
     {
-        //$this->is_logged_in();
-        $data['username'] = $this->auth->userid();
+        if ( !$this->tools_model->isLoggedIn() ) return 0;
+        $data['username'] = "admin";
         $data['title'] = 'News letter';
 
         $this->load->view('admin/header', $data);
@@ -252,8 +249,8 @@ class Admin extends CI_Controller
     /* STRANICA ZA KORISNIKE */
     public function users ()
     {
-        //$this->is_logged_in();
-        $data['username'] = $this->auth->userid();
+        if ( !$this->tools_model->isLoggedIn() ) return 0;
+        $data['username'] = "admin";
         $data['title'] = 'Korisnici';
 
         $this->load->view('admin/header', $data);
@@ -265,8 +262,8 @@ class Admin extends CI_Controller
     /* STRANICA ZA HELP */
     public function help ()
     {
-        //$this->is_logged_in();
-        $data['username'] = $this->auth->userid();
+        if ( !$this->tools_model->isLoggedIn() ) return 0;
+        $data['username'] = "admin";
         $data['title'] = 'Help';
 
         $this->load->view('admin/header', $data);
