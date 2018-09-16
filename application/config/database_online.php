@@ -64,10 +64,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'srcee.db.10443103.hostedresource.com',
-	'username' => 'srcee',
-	'password' => 'YunkerS123#',
-	'database' => 'srcee',
+	'hostname' => 'localhost',
+	'username' => 'srce',
+	'password' => 'YunkerS123$',
+	'database' => 'srce',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
