@@ -29,11 +29,9 @@ class Admin extends CI_Controller
       if ( $this->tools_model->isLoggedIn() )
       {
          $this->dashboard ();
-         //echo "!";
       }
-      //else
-      //{
-         /*
+      else
+      {
          $this->form_validation->set_rules('username', 'Username', 'required');
          $this->form_validation->set_rules('password', 'Password', 'required');
 
@@ -45,20 +43,24 @@ class Admin extends CI_Controller
          }
          else
          {
-            $result = $this->admin_model->validate_login();
+            $username = $this->input->post('username');
+            $password =  $this->input->post('password');
+
+            $result = $this->admin_model->validate_login( $username, $password );
             if ( $result == 0 )
             {
-                echo "Ne valja login";
+                echo "Ne valja login. Proveri usera i korisnicko ime.";
             }
             else
             {
-                $username = $this->input->post('username') . "<br>";
-                //$this->auth->login($username, $remember = TRUE);
-                redirect ('/admin');
+               // logujem ga kao admina, nema potreba da proveravam ostale...nema
+               // korisnickih nivoa ( za sad ), tako da, realno, postoji samo jedan
+               // korisnik. Ako se ukaze potreba za tim, prosto cu mu dati username
+               $this->tools_model->login ( "admin" );
+               $this->dashboard ();
             }
          }
-         */
-      //}
+      }
    }
 
     public function dashboard ()
@@ -155,21 +157,11 @@ class Admin extends CI_Controller
         $this->load->view('admin/footer', $data);
     }
 
-    /* ********************************************** */
-    /* metoda za proveravanje da li je admin ulogovan */
-    /* ako nije, baca ga na admin login               */
-    /* Poziv ove funkcije ( ili izvorne iz auth )     */
-    /* sam mogao da stavim u konstrutkor, kao sto sam */
-    /* uradio u DBTools.php, ali me zezao login ekran */
-    /* koji je stalno ucitavao sam sebe ( u slucaju   */
-    /* da admin nije ulogovan ). Zato ovo ostavljam   */
-    /* kasnije.                                       */
-    /* ********************************************** */
-
     /* logout metoda */
     public function logout()
     {
-
+      $this->tools_model->logout(); // izloguj ga
+      redirect("/admin");           // vrati ga na login
     }
 
     /* odobri poruku za prikaz */

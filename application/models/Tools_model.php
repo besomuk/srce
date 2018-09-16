@@ -7,13 +7,27 @@ class Tools_model extends CI_Model
     {
         $this->load->database();
         $this->load->model('messages_model');
+        $this->load->library('session');
     }
 
-
-   /* privremeno ! */
    public function isLoggedIn()
    {
-      return true;
+      if ( isset($this->session->userdata['admin_logged_in'] ) )
+			return TRUE;
+		else
+			return FALSE;
+   }
+
+   public function login ( $username )
+   {
+      $session_data = array ( 'username' => $username );
+      $this->session->set_userdata('admin_logged_in', $session_data);
+   }
+
+   public function logout()
+   {
+      $sess_array = array( 'username' => '' );
+      $this->session->unset_userdata('admin_logged_in', $sess_array);
    }
 
     /* PISE INFO O CAPTCHA U PRIVREMENU TABELU */
@@ -54,6 +68,14 @@ class Tools_model extends CI_Model
         else
             return 1;
     }
+
+    /* VRACA SLUCAJNU REC IZ BAZE */
+    public function get_random_word ()
+    {
+        $random_id = rand( 1, $this->number_of_words );
+        $query = $this->db->get_where('captcha_dic', array ( 'id' => $random_id ) );
+        return $query->row()->word;
+    }    
 
     // vrati set od 5 poruke za naj poruke po nekom kriterijumu
     // Ovo nisam hteo da radim u kontroleru ( pojavljuje se vise puta na vise mesta ) , a ni u modelu ( preglednost ), pa sam ga ostavio
